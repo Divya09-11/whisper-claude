@@ -1,0 +1,23 @@
+{
+  "operation": "transcribe",
+  "Records": [
+      {
+          "s3": {
+              "bucket": {
+                  "name": "your-bucket-name"
+              },
+              "object": {
+                  "key": "audio/recording.mp3"
+              }
+          }
+      }
+  ]
+}
+
+
+{
+  "operation": "q_n_a",
+  "transcript_bucket": "XXXXXXXXXXXXXXXX",
+  "transcript_file": "path/to/transcript.json",
+  "question": "What was discussed in the conversation?"
+}
