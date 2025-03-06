@@ -86,11 +86,6 @@ Configure bucket settings:
     For default encryption: Enable
 Click "Create bucket"
 
-
-## Testing
-Local Testing
-python test_local.py
-
 ## AWS Console Testing
 Go to Lambda Console
 Select your function
@@ -111,7 +106,6 @@ Create a test event using the following template:
         "object": {
           "key": "audio/test.mp3"
         }
-      }
     }
   ]
 }
@@ -142,3 +136,29 @@ AWS_REGION
 View logs in CloudWatch Logs
 Monitor function metrics in CloudWatch
 Check container image scanning results in ECR
+
+# Q&A Service
+
+## Features
+1. Audio Transcription: Converts audio files to text using Whisper AI
+2. Question & Answer: Ask questions about the transcribed content using Claude AI
+
+## How It Works
+
+### Audio Transcription
+- Upload audio files to the S3 bucket in the `audio/` folder
+- Supported formats: MP3, WAV, M4A
+- Transcripts are automatically generated and stored in the `transcripts/` folder
+
+### Question & Answer (NEW!)
+The Q&A feature allows you to ask questions about any transcribed content. The service uses Claude AI to provide context-aware answers based on the transcript.
+
+#### How to Use Q&A:
+1. **Request Format:**
+```json
+{
+    "operation": "q_n_a",
+    "transcript_bucket": "XXXXXXXXXXXXXXXX",
+    "transcript_file": "transcripts/your-transcript-file.json",
+    "question": "Your question about the transcript?"
+}
